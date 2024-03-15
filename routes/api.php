@@ -20,18 +20,22 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::controller(MedecinsController::class,[
-    Route::get('medecins', 'get'),
-    Route::get('medecins/{id}', 'getById'),
-    Route::delete('medecins/{id}', 'delete'),
-    Route::post('medecins', 'create'),
-    Route::put('medecins/{id}', 'update'),
-])  ;
+Route::controller(MedecinsController::class,)->prefix('medecins')->group(function(){
+    Route::get('/', 'get');
+    Route::get('/{id}', 'getById');
+    Route::delete('/{id}', 'delete');
+    Route::post('/', 'create');
+    Route::put('/{id}', 'update');
 
-Route::controller(PatientsController::class,[
-    Route::get('patients', 'get'),
-    Route::get('patients/{id}', 'getById'),
-    Route::delete('patients/{id}', 'delete'),
-    Route::post('patients', 'create'),
-    Route::put('patients/{id}', 'update'),
-])  ;
+})
+ ;
+
+Route::controller(PatientsController::class,)->prefix('patients')->group(function(){
+    Route::get('/', 'get');
+    Route::get('/{id}', 'getById');
+    Route::delete('/{id}', 'delete');
+    Route::post('/', 'create');
+    Route::put('/{id}', 'update');
+
+})
+ ;
