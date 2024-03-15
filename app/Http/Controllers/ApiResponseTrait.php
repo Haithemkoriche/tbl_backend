@@ -12,7 +12,7 @@ trait ApiResponseTrait
            'status'=>$status,
        ];
 
-       return response($array,$status);
+       return response()->json($array,$status);
 
    }
 
