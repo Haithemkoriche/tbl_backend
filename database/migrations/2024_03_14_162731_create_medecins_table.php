@@ -54,7 +54,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('creator')->nullable();
             $table->string('unique_id')->nullable();
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 

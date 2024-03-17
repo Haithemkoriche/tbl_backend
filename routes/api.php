@@ -24,14 +24,14 @@ Route::middleware(['checkBearerToken'])->group(function () {
         Route::get('/', 'get');
         Route::get('/{id}', 'getById');
         Route::delete('/{id}', 'delete');
-        Route::post('/', 'create');
+        Route::post('/create', 'create');
         Route::put('/{id}', 'update');
     });
     Route::controller(PatientsController::class,)->prefix('patients')->group(function () {
         Route::get('/', 'get');
         Route::get('/{id}', 'getById');
         Route::delete('/{id}', 'delete');
-        Route::post('/', 'create');
+        Route::post('/create', 'create');
         Route::put('/{id}', 'update');
     });
 });
