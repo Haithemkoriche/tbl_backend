@@ -15,7 +15,9 @@ class MedecinsController extends Controller
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where('FULL NAME', 'like', "%{$search}%")
-                ->orWhere('specialities_full', 'like', "%{$search}%");
+                ->orWhere('specialities_full', 'like', "%{$search}%")
+                ->orWhere('Wilaya_full', 'like', "%{$search}%")
+                ->orWhere('ADDRESS', 'like', "%{$search}%");
             // Add more conditions as necessary
         }
         $query->orderByRaw("CASE WHEN annu = 'non' THEN 1 ELSE 2 END");
