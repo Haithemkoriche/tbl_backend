@@ -28,21 +28,36 @@ class MedecinsController extends Controller
 
     public function getById($id)
     {
-        $medecins = medecins::find($id);
+        $field = 'unique_id'; 
+        $medecins = medecins::where($field, $id)->first();
         if ($medecins) {
             return $this->apiResponse($medecins, 'ok', 200);
         }
         return $this->apiResponse(null, 'medecin not found', 404);
     }
+    // public function delete($id)
+    // {
+    //     $medecins = medecins::find($id);
+    //     if ($medecins) {
+    //         $medecins->delete();
+    //         return $this->apiResponse(null, 'medecin deleted', 200);
+    //     }
+    //     return $this->apiResponse(null, 'medecin not found', 404);
+    // }
     public function delete($id)
     {
-        $medecins = medecins::find($id);
-        if ($medecins) {
-            $medecins->delete();
+        // Assuming the field and value are sent in the request. For example, using 'field' and 'value' keys.
+        $field = 'unique_id'; // The field name to delete by, e.g., 'email' or 'license_number'
+        $medecin = medecins::where($field, $id);
+
+        if ($medecin) {
+            $medecin->delete();
             return $this->apiResponse(null, 'medecin deleted', 200);
         }
+
         return $this->apiResponse(null, 'medecin not found', 404);
     }
+
 
     public function create(Request $request)
     {
@@ -52,7 +67,9 @@ class MedecinsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $medecins = medecins::find($id);
+        $field = 'unique_id'; 
+        $medecins = medecins::where($field, $id);
+        // $medecins = medecins::find($id);
         if ($medecins) {
             $medecins->update($request->all());
             return $this->apiResponse($medecins, 'medecin updated', 200);
